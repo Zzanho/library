@@ -7,12 +7,7 @@ function Book(title, author, pages, read) {
     this.read = read;
 }
 
-function addBookToLibrary() {
-    const title = prompt("Enter the book's title:");
-    const author = prompt("Enter the book's author:");
-    const pages = prompt("Enter the number of pages:");
-    const read = prompt("Have you read this book? (yes or no)");
-
+function addBookToLibrary(title, author, pages, read) {
     const book = new Book(title, author, pages, read);
     myLibrary.push(book);
 }
@@ -75,6 +70,28 @@ submitBtn.addEventListener("click", (e) => {
     form.style.display = "none";
 
     displayBooks();
+});
+
+const exampleBooksBtn = document.getElementById("example-books-btn");
+let exampleBooksAdded = false;
+exampleBooksBtn.addEventListener("click", () => {
+    if (!exampleBooksAdded) {
+        const response = confirm("Are you sure you want to add example books?");
+        if (response) {
+            addBookToLibrary("The Hobbit", "J.R.R. Tolkien", 295, "No");
+            addBookToLibrary("To Kill a Mockingbird", "Harper Lee", 281, "Yes");
+            addBookToLibrary("1984", "George Orwell", 328, "No");
+            addBookToLibrary("Pride and Prejudice", "Jane Austen", 279, "Yes");
+            displayBooks();
+            exampleBooksAdded = true;
+            exampleBooksBtn.textContent = "Remove Example Books";
+        }
+    } else {
+        myLibrary = [];
+        displayBooks();
+        exampleBooksAdded = false;
+        exampleBooksBtn.textContent = "Example Books";
+    }
 });
 
 displayBooks();
