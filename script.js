@@ -12,7 +12,7 @@ function addBookToLibrary(title, author, pages, read) {
     myLibrary.push(book);
 }
 
-function displayBooks() {
+function displayLibrary() {
     const bookList = document.getElementById("book-list");
     bookList.innerHTML = "";
 
@@ -41,7 +41,7 @@ function displayBooks() {
         removeBtn.textContent = "Remove";
         removeBtn.addEventListener("click", () => {
             myLibrary.splice(i, 1);
-            displayBooks();
+            displayLibrary();
         });
         bookDiv.appendChild(removeBtn);
 
@@ -69,7 +69,7 @@ submitBtn.addEventListener("click", (e) => {
     const form = document.getElementById("new-book-form");
     form.style.display = "none";
 
-    displayBooks();
+    displayLibrary();
 });
 
 const exampleBooksBtn = document.getElementById("example-books-btn");
@@ -82,16 +82,16 @@ exampleBooksBtn.addEventListener("click", () => {
             addBookToLibrary("To Kill a Mockingbird", "Harper Lee", 281, "Yes");
             addBookToLibrary("1984", "George Orwell", 328, "No");
             addBookToLibrary("Pride and Prejudice", "Jane Austen", 279, "Yes");
-            displayBooks();
+            displayLibrary();
             exampleBooksAdded = true;
             exampleBooksBtn.textContent = "Remove Example Books";
         }
     } else {
         myLibrary = [];
-        displayBooks();
+        displayLibrary();
         exampleBooksAdded = false;
         exampleBooksBtn.textContent = "Example Books";
     }
 });
 
-displayBooks();
+displayLibrary();
