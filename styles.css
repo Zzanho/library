@@ -101,6 +101,7 @@ h1 {
     cursor: pointer;
     transition: all 0.3s ease-in-out;
     margin-left: 10px;
+    margin-top: 10px;
 }
 
 #example-books-btn:hover {
