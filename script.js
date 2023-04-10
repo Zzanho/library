@@ -1,11 +1,13 @@
-let myLibrary = [];
-
-function Book(title, author, pages, read) {
-    this.title = title;
-    this.author = author;
-    this.pages = pages;
-    this.read = read;
+class Book {
+    constructor(title, author, pages, read) {
+        this.title = title;
+        this.author = author;
+        this.pages = pages;
+        this.read = read;
+    }
 }
+
+const myLibrary = [];
 
 function addBookToLibrary(title, author, pages, read) {
     const book = new Book(title, author, pages, read);
@@ -21,21 +23,23 @@ function displayLibrary() {
         const bookDiv = document.createElement("div");
         bookDiv.classList.add("book");
 
-        const title = document.createElement("h3");
-        title.textContent = book.title;
-        bookDiv.appendChild(title);
+        const { title, author, pages, read } = book;
 
-        const author = document.createElement("p");
-        author.textContent = "Author: " + book.author;
-        bookDiv.appendChild(author);
+        const titleEl = document.createElement("h3");
+        titleEl.textContent = title;
+        bookDiv.appendChild(titleEl);
 
-        const pages = document.createElement("p");
-        pages.textContent = "Pages: " + book.pages;
-        bookDiv.appendChild(pages);
+        const authorEl = document.createElement("p");
+        authorEl.textContent = `Author: ${author}`;
+        bookDiv.appendChild(authorEl);
 
-        const read = document.createElement("p");
-        read.textContent = "Read: " + book.read;
-        bookDiv.appendChild(read);
+        const pagesEl = document.createElement("p");
+        pagesEl.textContent = `Pages: ${pages}`;
+        bookDiv.appendChild(pagesEl);
+
+        const readEl = document.createElement("p");
+        readEl.textContent = `Read: ${read}`;
+        bookDiv.appendChild(readEl);
 
         const removeBtn = document.createElement("button");
         removeBtn.textContent = "Remove";
@@ -87,7 +91,7 @@ exampleBooksBtn.addEventListener("click", () => {
             exampleBooksBtn.textContent = "Remove Example Books";
         }
     } else {
-        myLibrary = [];
+        myLibrary.length = 0;
         displayLibrary();
         exampleBooksAdded = false;
         exampleBooksBtn.textContent = "Example Books";
